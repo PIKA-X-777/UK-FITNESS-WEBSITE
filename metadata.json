@@ -1,0 +1,6 @@
+{
+  "name": "UK FITNESS (by imkavy)",
+  "description": "Local neighborhood gym in Paschim Vihar, Delhi featuring strength equipment, personal coaching, group classes, and a welcoming community. Open daily until 10:30 pm.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
