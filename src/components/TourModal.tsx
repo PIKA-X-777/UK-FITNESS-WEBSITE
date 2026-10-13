@@ -58,7 +58,17 @@ export const TourModal: React.FC<TourModalProps> = ({ isOpen, onClose, defaultPl
     const text = encodeURIComponent(
       `Hi UK FITNESS!\nMy name is ${name.trim() || 'Prospective Member'}.\nI want to book a Free Gym Tour Pass.\nPreferred Slot: ${slot}.\nMembership Interest: ${defaultPlan || '3 Months Transformation'}.\nMy Phone: ${phone.trim() || 'Please call me'}.\nLooking forward to checking out the gym!`
     );
-    window.open(`https://wa.me/919311549106?text=${text}`, '_blank');
+    const url = `https://wa.me/919311549106?text=${text}`;
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
   };
 
   return (

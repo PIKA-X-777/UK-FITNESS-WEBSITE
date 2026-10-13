@@ -69,7 +69,17 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
 
     const encoded = encodeURIComponent(details);
     const url = `https://wa.me/919311549106?text=${encoded}`;
-    window.open(url, '_blank');
+    
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
     onClose();
   };
 

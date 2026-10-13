@@ -101,7 +101,17 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, selectedClass, o
       .join('\n');
 
     const encoded = encodeURIComponent(details);
-    window.open(`https://wa.me/919311549106?text=${encoded}`, '_blank');
+    const url = `https://wa.me/919311549106?text=${encoded}`;
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
   };
 
   return (
